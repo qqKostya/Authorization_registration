@@ -33,7 +33,7 @@ if ($password !== $passwordConfirmation) {
 // Работа с файлом (картинкой)
 
 if (!empty($avatar)) {
-    $types = ['image/jpeg', 'image/png'];
+    $types = ['image/jpeg', 'image/png', 'image/jpg'];
     if (!in_array($avatar['type'], $types)) {
         setValidationError('avatar', 'Изображение профиля имеет не верный тип');
     }
@@ -57,4 +57,22 @@ if (!empty($avatar)) {
     $avatarPath = uploadFile($avatar, 'avatar_');
 }
 
-var_dump($avatarPath);
+// Подключение и работа с БД
+$pdo = getPDO();
+
+$query = "INSERT INTO users (name, email, avatar, password) VALUES (:name, :email, :avatar, :password)";
+
+$params = [
+    'name' => $name,
+    'email' => $email,
+    'avatar' => $avatarPath,
+    'password' => password_hash($password, PASSWORD_DEFAULT)
+];
+
+$stmt = $pdo->prepare($query);
+
+try {
+    $stmt->execute($params);
+} catch (\Exception $e) {
+    die($e->getMessage());
+}

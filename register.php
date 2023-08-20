@@ -3,7 +3,7 @@ require_once __DIR__ . '/src/helpers.php';
 
 ?>
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
