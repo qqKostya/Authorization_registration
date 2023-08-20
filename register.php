@@ -34,7 +34,10 @@ require_once __DIR__ . '/src/helpers.php';
         </label>
 
         <label for="avatar">Изображение профиля
-            <input type="file" id="avatar" name="avatar">
+            <input type="file" id="avatar" name="avatar" <?php echo validationErrorAttr('avatar'); ?>>
+            <?php if (hasValidationError('avatar')) : ?>
+                <small><?php echo validationErrorMessage('avatar'); ?></small>
+            <?php endif; ?>
         </label>
 
         <div class="grid">

@@ -41,3 +41,21 @@ function old(string $key)
     unset($_SESSION['old'][$key]);
     return $value;
 }
+
+function uploadFile(array $file, string $prefix = ''): string
+{
+    $uploadFile = __DIR__ . '/../uploads';
+
+    if (!is_dir($uploadFile)) {
+        mkdir($uploadFile, 0777, true);
+    }
+
+    $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+    $fileName = $prefix . time() . ".$ext";
+
+    if (!move_uploaded_file($file['tmp_name'], "$uploadFile/$fileName")) {
+        die('Ошибка при загрузке файла на сервер');
+    }
+
+    return "uploads/$fileName";
+}
