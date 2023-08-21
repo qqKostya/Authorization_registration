@@ -1,14 +1,13 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
+
+checkGuest();
 ?>
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <title>AreaWeb - авторизация и регистрация</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <link rel="stylesheet" href="assets/app.css">
+    <?php include_once __DIR__ . '/components/head.php'; ?>
 </head>
 
 <body>
@@ -23,7 +22,7 @@ require_once __DIR__ . '/src/helpers.php';
 
         <label for="name">
             Имя
-            <input type="text" id="name" name="email" placeholder="ivan@areaweb.su" aria-invalid="true" required value="<?php echo old('email') ?>" <?php echo validationErrorAttr('email'); ?>>
+            <input type="text" id="name" name="email" placeholder="ivan@areaweb.su" required value="<?php echo old('email') ?>" <?php echo validationErrorAttr('email'); ?>>
             <?php if (hasValidationError('email')) : ?>
                 <small><?php echo validationErrorMessage('email'); ?></small>
             <?php endif; ?>
@@ -37,7 +36,9 @@ require_once __DIR__ . '/src/helpers.php';
         <button type="submit" id="submit">Продолжить</button>
     </form>
 
-    <p>У меня еще нет <a href="/register.html">аккаунта</a></p>
+    <p>У меня еще нет <a href="/register.php">аккаунта</a></p>
 
-    <script src="assets/app.js"></script>
-    </bo
+    <?php include_once __DIR__ . '/components/scripts.php' ?>
+</body>
+
+</html>

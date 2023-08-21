@@ -1,15 +1,13 @@
 <?php
 require_once __DIR__ . '/src/helpers.php';
 
+checkGuest();
 ?>
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <title>AreaWeb - авторизация и регистрация</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <link rel="stylesheet" href="assets/app.css">
+    <?php include_once __DIR__ . '/components/head.php'; ?>
 </head>
 
 <body>
@@ -65,9 +63,9 @@ require_once __DIR__ . '/src/helpers.php';
         <button type="submit" id="submit" disabled>Продолжить</button>
     </form>
 
-    <p>У меня уже есть <a href="/login.html">аккаунт</a></p>
+    <p>У меня уже есть <a href="/">аккаунт</a></p>
 
-    <script src="assets/app.js"></script>
+    <?php include_once __DIR__ . '/components/scripts.php' ?>
 </body>
 
 </html>

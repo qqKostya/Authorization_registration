@@ -8,22 +8,22 @@ $password = $_POST['password'] ?? null;
 
 
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  setOldValue('email', $email);
-  setValidationError('email', 'Неверный формат электронной почты');
-  setMessage('error', 'Ошибка валидации');
-  redirect('/');
+    setOldValue('email', $email);
+    setValidationError('email', 'Неверный формат электронной почты');
+    setMessage('error', 'Ошибка валидации');
+    redirect('/');
 }
 
 $user = findUser($email);
 
 if (!$user) {
-  setMessage('error', "Пользователь с $email не найден");
-  redirect("/");
+    setMessage('error', "Пользователь с $email не найден");
+    redirect("/");
 }
 
 if (!password_verify($password, $user['password'])) {
-  setMessage('error', 'Не верный пароль');
-  redirect("/");
+    setMessage('error', 'Не верный пароль');
+    redirect("/");
 }
 
 $_SESSION['user']['id'] = $user['id'];
